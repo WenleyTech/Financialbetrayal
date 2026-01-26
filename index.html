@@ -1,625 +1,748 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Financial Betrayal Research Center (FBRC)</title>
-  <meta name="description" content="Independent research, pattern documentation, and survivor education on trust-based financial exploitation and its psychological impact." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Independent research on Financial Betrayal Trauma - documenting patterns of trust-based financial exploitation">
+    <title>Financial Betrayal Research Center</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root{
-      --navy:#0b2a3a;
-      --navy-2:#0a2230;
-      --ink:#12212a;
-      --muted:#52616b;
-      --border:#e6eaee;
-      --bg:#ffffff;
-      --soft:#f5f7f9;
-      --soft-2:#eef2f5;
-      --accent:#5b2b82; /* subtle purple for links (optional) */
-      --shadow: 0 10px 22px rgba(11,42,58,.08);
-      --radius: 14px;
-      --max: 1080px;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #ffffff;
+        }
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--ink);
-      background:var(--bg);
-      line-height:1.6;
-    }
-    a{ color:var(--accent); text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-    .container{ max-width:var(--max); margin:0 auto; padding:0 20px; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    /* Top utility strip (FDIC/OFR vibe) */
-    .utility{
-      background:var(--navy-2);
-      color:#d7e2ea;
-      font-size:13px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .utility .inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:8px 0;
-    }
-    .utility a{ color:#d7e2ea; text-decoration:underline; text-underline-offset:2px; }
-    .utility .right{
-      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      white-space:nowrap;
-    }
+        /* Top Bar */
+        .top-bar {
+            background: #1e3a52;
+            color: #e2e8f0;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+        }
 
-    /* Header + brand bar */
-    header{
-      background:linear-gradient(180deg, var(--navy) 0%, #0b2a3a 45%, #08202c 100%);
-      color:#fff;
-      padding:24px 0 0 0;
-    }
-    .brandbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      padding-bottom:18px;
-    }
-    .brand{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-    }
-    .mark{
-      width:38px; height:38px;
-      border-radius:10px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.18);
-      display:grid; place-items:center;
-      font-weight:800;
-      letter-spacing:.5px;
-    }
-    .brand h1{
-      margin:0;
-      font-size:22px;
-      letter-spacing:.2px;
-      line-height:1.2;
-    }
-    .brand p{
-      margin:4px 0 0 0;
-      color:rgba(255,255,255,.78);
-      font-size:13px;
-    }
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .search{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex:1;
-      justify-content:flex-end;
-    }
-    .search input{
-      width:min(420px, 100%);
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.20);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      outline:none;
-    }
-    .search input::placeholder{ color:rgba(255,255,255,.65); }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.20);
-      background:rgba(255,255,255,.12);
-      color:#fff;
-      font-weight:600;
-      text-decoration:none;
-      white-space:nowrap;
-    }
-    .btn:hover{ background:rgba(255,255,255,.18); text-decoration:none; }
+        .top-bar a {
+            color: #e2e8f0;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
 
-    /* Nav with dropdowns (CSS only) */
-    nav{
-      background:#fff;
-      border-top:1px solid rgba(255,255,255,.10);
-      border-bottom:1px solid var(--border);
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:10px 0;
-    }
-    .menu{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .menu > .item{ position:relative; }
-    .menu a, .menu button{
-      font:inherit;
-      color:var(--ink);
-      background:transparent;
-      border:0;
-      padding:10px 10px;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-    }
-    .menu a:hover, .menu button:hover{ background:var(--soft); }
-    .caret{ opacity:.7; margin-left:6px; }
+        .top-bar a:hover {
+            color: #ffffff;
+        }
 
-    .dropdown{
-      position:absolute;
-      left:0;
-      top:44px;
-      min-width:260px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:12px;
-      box-shadow:var(--shadow);
-      padding:8px;
-      display:none;
-    }
-    .dropdown a{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      color:var(--ink);
-      font-weight:600;
-    }
-    .dropdown a span{
-      display:block;
-      font-weight:500;
-      color:var(--muted);
-      font-size:12px;
-      margin-top:2px;
-    }
-    .item:focus-within .dropdown,
-    .item:hover .dropdown{ display:block; }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a52 0%, #2d5267 100%);
+            color: #ffffff;
+            padding: 4rem 2rem 5rem;
+        }
 
-    /* Hero */
-    .hero{
-      padding:26px 0 34px 0;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .hero h2{
-      margin:0 0 8px 0;
-      font-size:34px;
-      line-height:1.15;
-      letter-spacing:-.3px;
-    }
-    .hero p{
-      margin:0;
-      color:rgba(255,255,255,.82);
-      font-size:16px;
-      max-width:62ch;
-    }
-    .hero .cta-row{ margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; }
-    .btn-solid{
-      background:#fff;
-      color:var(--navy);
-      border-color:#fff;
-    }
-    .btn-solid:hover{ background:#f2f6f9; }
-    .btn-outline{
-      background:rgba(255,255,255,.10);
-      border-color:rgba(255,255,255,.24);
-    }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .hero-card{
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:var(--radius);
-      padding:16px;
-    }
-    .hero-card h3{
-      margin:0 0 8px 0;
-      font-size:14px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:rgba(255,255,255,.72);
-    }
-    .hero-card ul{
-      margin:0;
-      padding-left:18px;
-      color:rgba(255,255,255,.88);
-    }
-    .hero-card li{ margin:8px 0; }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
 
-    /* Main sections */
-    main{ padding:28px 0 50px 0; }
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:10px;
-      margin:0 0 12px 0;
-    }
-    .section-head h3{
-      margin:0;
-      font-size:20px;
-      letter-spacing:-.1px;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-    }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: #5b9aa0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    .card{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:16px;
-      box-shadow: 0 1px 0 rgba(0,0,0,.02);
-    }
-    .card:hover{ box-shadow:var(--shadow); }
-    .card .kicker{
-      font-size:12px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      margin:0 0 8px 0;
-    }
-    .card h4{
-      margin:0 0 8px 0;
-      font-size:16px;
-    }
-    .card p{
-      margin:0 0 10px 0;
-      color:var(--muted);
-      font-size:14px;
-    }
-    .card .link{
-      font-weight:700;
-      color:var(--navy);
-      text-decoration:none;
-    }
-    .card .link:hover{ text-decoration:underline; }
+        .brand {
+            flex: 1;
+        }
 
-    .band{
-      margin-top:22px;
-      background:var(--soft);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:18px;
-    }
-    .band h3{ margin:0 0 8px 0; }
-    .band p{ margin:0; color:var(--muted); }
+        .brand h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
 
-    .two-col{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:14px;
-    }
+        .brand p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
 
-    .list{
-      margin:0;
-      padding-left:18px;
-      color:var(--muted);
-    }
-    .list li{ margin:8px 0; }
+        .hero-main {
+            max-width: 800px;
+        }
 
-    /* Footer */
-    footer{
-      background:#fff;
-      border-top:1px solid var(--border);
-      padding:22px 0;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .foot-grid{
-      display:grid;
-      grid-template-columns: 1.3fr .7fr;
-      gap:14px;
-      align-items:start;
-    }
-    .fineprint{
-      background:var(--soft);
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:12px;
-      color:#4f5f69;
-    }
-    .fineprint strong{ color:var(--ink); }
+        .hero-main h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .hero-grid{ grid-template-columns: 1fr; }
-      .two-col{ grid-template-columns: 1fr; }
-      .search{ justify-content:flex-start; }
-    }
-  </style>
+        .hero-main p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #e2e8f0;
+        }
+
+        .hero-main .emphasis {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #1e3a52;
+        }
+
+        .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #475569;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1e3a52;
+        }
+
+        .btn-nav {
+            background: #1e3a52;
+            color: #ffffff;
+            padding: 0.625rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover {
+            background: #2d5267;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content Sections */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-gray {
+            background: #f8fafc;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+        }
+
+        /* What We Do Section */
+        .what-we-do-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .what-item {
+            text-align: center;
+        }
+
+        .what-icon {
+            width: 60px;
+            height: 60px;
+            background: #e0f2f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .what-item h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #1e3a52;
+        }
+
+        .what-item p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Featured Research */
+        .featured-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-label {
+            display: inline-block;
+            background: #e0f2f4;
+            color: #1e3a52;
+            padding: 0.375rem 0.875rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .featured-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .featured-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .featured-card a {
+            color: #1e3a52;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-card a:hover {
+            color: #5b9aa0;
+        }
+
+        /* Research Grid */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .research-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Categories Section */
+        .categories-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .categories-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .categories-list {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .categories-list h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e3a52;
+        }
+
+        .categories-list ul {
+            list-style: none;
+        }
+
+        .categories-list li {
+            padding: 0.875rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+
+        .categories-list li::before {
+            content: "•";
+            color: #5b9aa0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        .approach-box {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .approach-box h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e3a52;
+        }
+
+        .approach-box p {
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .resource-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e3a52;
+        }
+
+        .resource-card p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-card a {
+            color: #1e3a52;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .disclaimer {
+            background: #fff8e1;
+            border-left: 4px solid #fbbf24;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .disclaimer strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #92400e;
+        }
+
+        .disclaimer p {
+            color: #78350f;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-info {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.875rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-main h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .categories-container {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .top-bar a {
+                margin-left: 0;
+                margin: 0 0.75rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-  <!-- Utility bar -->
-  <div class="utility">
-    <div class="container">
-      <div class="inner">
-        <div class="badge">Independent Research Initiative</div>
-        <div class="right">
-          <a href="#disclaimer">Disclaimer</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="brandbar">
-        <div class="brand">
-          <div class="mark">FB</div>
-          <div>
-            <h1>Financial Betrayal Research Center</h1>
-            <p>Independent Research · Pattern Documentation · Survivor Education</p>
-          </div>
-        </div>
-
-        <div class="search" aria-label="Site Search (placeholder)">
-          <input type="search" placeholder="Search the site (coming soon)" aria-label="Search" />
-          <a class="btn" href="#resources">Resources</a>
-        </div>
-      </div>
-
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero-grid">
-          <div>
-            <h2>Understanding Financial Betrayal Trauma</h2>
-            <p>
-              FBRC documents patterns of trust-based financial exploitation and its psychological impact.
-              <br />
-              <strong style="color:rgba(255,255,255,.92); font-weight:700;">
-                When trust becomes a weapon, survivors deserve clarity, validation, and pathways to healing.
-              </strong>
-            </p>
-
-            <div class="cta-row">
-              <a class="btn btn-solid" href="#research">Read the Research</a>
-              <a class="btn btn-outline" href="#support">Connect with a Specialist →</a>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <span>Independent Research Initiative</span>
+            <div>
+                <a href="#disclaimer">Disclaimer</a>
+                <a href="#contact">Contact</a>
             </div>
-          </div>
+        </div>
+    </div>
 
-          <aside class="hero-card">
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a class="btn btn-outline" style="display:inline-flex; padding:8px 12px;" href="#categories">Trauma Categories</a></li>
-              <li><a class="btn btn-outline" style="display:inline-flex; padding:8px 12px;" href="#resources">Resource Library</a></li>
-              <li><a class="btn btn-outline" style="display:inline-flex; padding:8px 12px;" href="#about">About FBRC</a></li>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="logo-section">
+                <div class="logo">FB</div>
+                <div class="brand">
+                    <h1>Financial Betrayal Research Center</h1>
+                    <p>Independent Research · Pattern Documentation · Survivor Education</p>
+                </div>
+            </div>
+
+            <div class="hero-main">
+                <h2>Understanding Financial Betrayal Trauma</h2>
+                <p>FBRC documents patterns of trust-based financial exploitation and its psychological impact.</p>
+                <p class="emphasis">When trust becomes a weapon, survivors deserve clarity, validation, and pathways to healing.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#research" class="btn btn-primary">Read the Research</a>
+                    <a href="https://backbeamnetwork.com" class="btn btn-secondary">Connect with a Specialist →</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About FBRC</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
-          </aside>
+            <a href="https://backbeamnetwork.com" class="btn-nav">Find Support</a>
         </div>
-      </section>
-    </div>
-  </header>
+    </nav>
 
-  <!-- Navigation (sticky) -->
-  <nav aria-label="Primary navigation">
-    <div class="container">
-      <div class="nav-inner">
-        <div class="menu">
-          <a href="#home">Home</a>
-
-          <div class="item">
-            <button type="button">Research <span class="caret">▾</span></button>
-            <div class="dropdown" role="menu">
-              <a href="research/">
-                Research Index
-                <span>Working papers, frameworks, briefs</span>
-              </a>
-              <a href="#research">
-                Featured Research
-                <span>Start here if you’re new</span>
-              </a>
+    <!-- What We Do Section -->
+    <section id="home">
+        <div class="section-content">
+            <h2 class="section-title">What We Do</h2>
+            <p class="section-subtitle">FBRC provides the research foundation that helps survivors name their experience and connect to informed care.</p>
+            
+            <div class="what-we-do-grid">
+                <div class="what-item">
+                    <div class="what-icon">📋</div>
+                    <h3>Document Patterns</h3>
+                    <p>We analyze public records and survivor accounts to identify repeatable behavioral patterns of financial exploitation.</p>
+                </div>
+                <div class="what-item">
+                    <div class="what-icon">🔍</div>
+                    <h3>Define Categories</h3>
+                    <p>We create clear trauma categories so survivors can recognize what happened without shame or confusion.</p>
+                </div>
+                <div class="what-item">
+                    <div class="what-icon">🤝</div>
+                    <h3>Connect to Support</h3>
+                    <p>We bridge survivors to trauma-informed therapists through BackBeam Network, our specialized directory.</p>
+                </div>
             </div>
-          </div>
+        </div>
+    </section>
 
-          <div class="item">
-            <button type="button">Categories <span class="caret">▾</span></button>
-            <div class="dropdown" role="menu">
-              <a href="#categories"><strong>Trauma Categories We Document</strong><span>Recognition + language for what happened</span></a>
-              <a href="#categories">Romance Fraud & Trauma Bonds<span>Love-based manipulation & exploitation</span></a>
-              <a href="#categories">Coercive Control & Financial Abuse<span>Control, threats, restrictions, dependence</span></a>
-              <a href="#categories">Family Financial Exploitation<span>Entitlement, obligation, guilt, extraction</span></a>
+    <!-- Featured Research Section -->
+    <section id="research" class="section-gray">
+        <div class="section-content">
+            <h2 class="section-title">Featured Research</h2>
+            <p class="section-subtitle">Structured, plain-language summaries. No therapy claims. No clinical advice.</p>
+            
+            <div class="featured-card">
+                <span class="card-label">Pattern Documentation</span>
+                <h3>Scamming for Sport: Romance Fraud & LLC Exploitation</h3>
+                <p>How romantic trust is weaponized to create LLCs, shift liability, and exploit Black women through affinity fraud. Includes behavioral playbook, psychological manipulation tactics, and legal gray zones.</p>
+                <a href="#">View research →</a>
             </div>
-          </div>
 
-          <div class="item">
-            <button type="button">Resources <span class="caret">▾</span></button>
-            <div class="dropdown" role="menu">
-              <a href="#resources">Resource Library<span>Education, checklists, safety planning</span></a>
-              <a href="#resources">FAQ<span>Common questions</span></a>
+            <div class="research-grid">
+                <div class="research-card">
+                    <span class="card-label">Framework</span>
+                    <h3>What is Financial Betrayal Trauma?</h3>
+                    <p>A working definition, core patterns, and why the impact is often minimized or misunderstood.</p>
+                    <a href="#">View research →</a>
+                </div>
+                <div class="research-card">
+                    <span class="card-label">Behavioral Model</span>
+                    <h3>The Playbook: Romantic Trust & LLCs</h3>
+                    <p>Step-by-step documentation of how perpetrators use relationships to create business entities and shift financial liability.</p>
+                    <a href="#">Explore patterns →</a>
+                </div>
+                <div class="research-card">
+                    <span class="card-label">Survivor Education</span>
+                    <h3>Stabilization After Betrayal</h3>
+                    <p>Practical, non-clinical steps: documentation, boundaries, support, and reducing re-contact risk.</p>
+                    <a href="#">Open resources →</a>
+                </div>
             </div>
-          </div>
-
-          <a href="#about">About FBRC</a>
-          <a href="#contact">Contact</a>
         </div>
+    </section>
 
-        <a class="btn" href="#support" style="background:var(--navy); border-color:var(--navy);">Find Support</a>
-      </div>
-    </div>
-  </nav>
+    <!-- Trauma Categories Section -->
+    <section id="categories">
+        <div class="section-content">
+            <div class="categories-intro">
+                <h2 class="section-title">Trauma Categories We Document</h2>
+                <p class="section-subtitle">This helps survivors immediately recognize: "That's what happened to me."</p>
+            </div>
 
-  <!-- Main -->
-  <main id="home">
-    <div class="container">
+            <div class="categories-container">
+                <div class="categories-list">
+                    <h3>Core Categories</h3>
+                    <ul>
+                        <li>Romance Fraud & Trauma Bonds</li>
+                        <li>Coercive Control & Financial Abuse</li>
+                        <li>Family Financial Exploitation</li>
+                        <li>Affinity & Investment Betrayal</li>
+                        <li>Legal Retaliation & Court-Related Trauma</li>
+                        <li>General Financial Betrayal Trauma</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem;"><a href="#" style="color: #1e3a52; font-weight: 500;">Learn more about each category →</a></p>
+                </div>
 
-      <!-- Featured cards -->
-      <div class="section-head" id="research">
-        <div>
-          <h3>Featured Research</h3>
-          <p>Structured, plain-language summaries. No therapy claims. No clinical advice.</p>
+                <div class="approach-box">
+                    <h3>Our Approach</h3>
+                    <p>FBRC research is derived from publicly available records (including court filings and civil litigation), credible reporting, and survivor accounts. We provide educational resources only.</p>
+                    <p>We do not provide therapy, legal services, diagnosis, or clinical treatment.</p>
+                    <p style="margin-top: 1.5rem;">Survivors seeking mental health support may visit <strong>BackBeam Network</strong>, a specialized therapist directory for Financial Betrayal Trauma.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="grid">
-        <article class="card">
-          <div class="kicker">Framework</div>
-          <h4>What is Financial Betrayal Trauma?</h4>
-          <p>A working definition, core patterns, and why the impact is often minimized or misunderstood.</p>
-          <a class="link" href="research/">View research →</a>
-        </article>
-
-        <article class="card">
-          <div class="kicker">Pattern Documentation</div>
-          <h4>Common Manipulation Patterns</h4>
-          <p>Trauma bonds, extraction cycles, “crisis leverage,” and retaliation behaviors—mapped clearly.</p>
-          <a class="link" href="research/">Explore patterns →</a>
-        </article>
-
-        <article class="card">
-          <div class="kicker">Survivor Education</div>
-          <h4>Stabilization After Betrayal</h4>
-          <p>Practical, non-clinical steps: documentation, boundaries, support, and reducing re-contact risk.</p>
-          <a class="link" href="#resources">Open resources →</a>
-        </article>
-      </div>
-
-      <!-- Categories band -->
-      <section class="band" id="categories" style="margin-top:18px;">
-        <div class="section-head" style="margin-bottom:10px;">
-          <div>
-            <h3>Trauma Categories We Document</h3>
-            <p>This helps survivors immediately recognize: “That’s what happened to me.”</p>
-          </div>
+    <!-- Resources Section -->
+    <section id="resources" class="section-gray">
+        <div class="section-content">
+            <h2 class="section-title">Resources</h2>
+            <p class="section-subtitle">Start here for grounding, language, and next steps.</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <span class="card-label">Library</span>
+                    <h3>Resource Library</h3>
+                    <p>Articles, checklists, and guides organized by category, symptoms, and stage of recovery.</p>
+                    <a href="#">Browse library →</a>
+                </div>
+                <div class="resource-card">
+                    <span class="card-label">FAQ</span>
+                    <h3>Frequently Asked Questions</h3>
+                    <p>What counts as financial betrayal trauma? What should I document? What support exists?</p>
+                    <a href="#">Read FAQs →</a>
+                </div>
+                <div class="resource-card">
+                    <span class="card-label">Support</span>
+                    <h3>Connect with a Specialist</h3>
+                    <p>Survivors seeking mental health support may visit <strong>BackBeam Network</strong> (specialist directory).</p>
+                    <a href="https://backbeamnetwork.com">Go to BackBeam Network →</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="two-col">
-          <div class="card" style="background:#fff;">
-            <h4 style="margin-top:0;">Core categories</h4>
-            <ul class="list">
-              <li>Romance Fraud & Trauma Bonds</li>
-              <li>Coercive Control & Financial Abuse</li>
-              <li>Family Financial Exploitation</li>
-              <li>Affinity & Investment Betrayal</li>
-              <li>Legal Retaliation & Court-Related Trauma</li>
-              <li>General Financial Betrayal Trauma</li>
-            </ul>
-            <p style="margin-top:10px;">
-              <a class="link" href="#resources">Learn more about each category →</a>
-            </p>
-          </div>
-
-          <div class="card" style="background:#fff;">
-            <h4 style="margin-top:0;">Our approach</h4>
-            <p style="color:var(--muted);">
-              FBRC research is derived from publicly available records (including court filings and civil litigation),
-              credible reporting, and survivor accounts. We provide educational resources only.
-            </p>
-            <p style="color:var(--muted); margin-top:10px;">
-              We do not provide therapy, legal services, diagnosis, or clinical treatment.
-            </p>
-          </div>
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-content">
+            <div class="about-content">
+                <h2 class="section-title">About FBRC</h2>
+                <p class="section-subtitle">Independent research and education—built for clarity and survivor validation.</p>
+                
+                <p>FBRC is an independent research initiative dedicated to documenting and defining patterns of trust-based financial exploitation and its psychological impact. Our goal is to provide clear language, frameworks, and accessible resources so survivors can name what happened—and make informed next steps.</p>
+                
+                <p>All research is derived from publicly available records, court filings, and survivor testimony. We do not provide therapy, legal services, or clinical diagnosis. Our role is pattern documentation and education.</p>
+                
+                <p>For therapy services, survivors may visit <strong>BackBeam Network</strong>, a specialized therapist directory built exclusively for Financial Betrayal Trauma.</p>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Resources -->
-      <section style="margin-top:22px;" id="resources">
-        <div class="section-head">
-          <div>
-            <h3>Resources</h3>
-            <p>Start here for grounding, language, and next steps.</p>
-          </div>
+    <!-- Footer -->
+    <footer id="disclaimer">
+        <div class="footer-content">
+            <div class="disclaimer">
+                <strong>DISCLAIMER:</strong>
+                <p>The Financial Betrayal Research Center provides research and educational resources only. We do not provide therapy, diagnosis, legal services, or clinical treatment.</p>
+                <p>If you are in crisis, please contact <strong>988</strong> (Suicide & Crisis Lifeline) or <strong>911</strong>.</p>
+                <p>For therapy services, visit <a href="https://backbeamnetwork.com" style="color: #1e3a52; font-weight: 500;">BackBeam Network</a>.</p>
+            </div>
+
+            <div class="footer-info" id="contact">
+                <p><strong>Financial Betrayal Research Center</strong></p>
+                <p>Contact: research@financialbetrayal.org</p>
+                <p style="margin-top: 1rem;">© 2026 FBRC</p>
+            </div>
         </div>
-
-        <div class="grid">
-          <article class="card">
-            <div class="kicker">Library</div>
-            <h4>Resource Library (Coming Next)</h4>
-            <p>Articles, checklists, and guides organized by category, symptoms, and stage of recovery.</p>
-            <a class="link" href="#">Browse library →</a>
-          </article>
-
-          <article class="card">
-            <div class="kicker">FAQ</div>
-            <h4>Frequently Asked Questions</h4>
-            <p>What counts as financial betrayal trauma? What should I document? What support exists?</p>
-            <a class="link" href="#">Read FAQs →</a>
-          </article>
-
-          <article class="card" id="support">
-            <div class="kicker">Support</div>
-            <h4>Connect with a Specialist</h4>
-            <p>Survivors seeking mental health support may visit <strong>BackBeam Network</strong> (specialist directory).</p>
-            <a class="link" href="#">Go to BackBeam Network →</a>
-          </article>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section style="margin-top:22px;" id="about">
-        <div class="section-head">
-          <div>
-            <h3>About FBRC</h3>
-            <p>Independent research and education—built for clarity and survivor validation.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <p style="margin:0; color:var(--muted);">
-            FBRC is an independent research initiative dedicated to documenting and defining patterns of trust-based financial
-            exploitation and its psychological impact. Our goal is to provide clear language, frameworks, and accessible resources
-            so survivors can name what happened—and make informed next steps.
-          </p>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="container">
-      <div class="foot-grid">
-        <div class="fineprint" id="disclaimer">
-          <p style="margin:0 0 10px 0;">
-            <strong>DISCLAIMER:</strong> The Financial Betrayal Research Center provides research and educational resources only.
-            We do not provide therapy, diagnosis, legal services, or clinical treatment.
-          </p>
-          <p style="margin:0 0 10px 0;">
-            If you are in crisis, please contact <strong>988</strong> (Suicide &amp; Crisis Lifeline) or <strong>911</strong>.
-          </p>
-          <p style="margin:0;">
-            For therapy services, visit <strong>BackBeam Network</strong>.
-          </p>
-        </div>
-
-        <div>
-          <p style="margin:0 0 8px 0;"><strong style="color:var(--ink);">Financial Betrayal Research Center</strong></p>
-          <p style="margin:0 0 8px 0;">© 2026 FBRC</p>
-          <p style="
+    </footer>
+</body>
+</html>
