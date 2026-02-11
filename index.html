@@ -3,10 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Independent research on Financial Betrayal Trauma - documenting patterns of trust-based financial exploitation" />
-  <title>Financial Betrayal Research Center</title>
+  <meta
+    name="description"
+    content="Independent research on Financial Betrayal Trauma - documenting patterns of trust-based financial exploitation."
+  />
+  <title>Financial Betrayal Research Center (FBRC)</title>
+
+  <!-- Your existing shared stylesheet -->
   <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Small homepage-specific fixes (contrast, spacing, mobile nav) -->
+  <style>
+    /* Improve readability (your gray was too light) */
+    body { color: #0f172a; }
+    .section-subtitle, p { color: #334155; }
+    .card p, .what-item p { color: #334155; }
+
+    /* Tighten vertical rhythm */
+    section { padding: 3rem 2rem; }
+    .section-gray { padding: 3rem 2rem; }
+    .quote { margin: 0; }
+    .quote p { margin-bottom: .75rem; }
+    .quote .small { margin-bottom: 0; }
+
+    /* Stronger “page section” header treatment */
+    .section-kicker {
+      display: inline-block;
+      background: #e0f2f4;
+      color: #0f172a;
+      padding: .35rem .75rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .2px;
+      margin-bottom: .9rem;
+    }
+
+    /* Types grid */
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Two-column helpers */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      align-items: start;
+    }
+
+    /* Boxes */
+    .box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    /* Category list */
+    .category-list { list-style: none; padding: 0; margin: 1rem 0 0; }
+    .category-list li {
+      padding: .75rem 0;
+      border-bottom: 1px solid #e2e8f0;
+      color: #0f172a;
+      font-weight: 600;
+    }
+    .category-list li:last-child { border-bottom: none; }
+    .category-list li::before {
+      content: "•";
+      color: #5b9aa0;
+      font-weight: 900;
+      display: inline-block;
+      width: 1.25rem;
+    }
+
+    /* Grid class fallback (if your styles.css doesn't define .grid for home) */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Nav: add mobile toggle support */
+    .nav-toggle {
+      display: none;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: .55rem .75rem;
+      font-weight: 800;
+      color: #0f172a;
+      cursor: pointer;
+    }
+
+    .nav-links a.active {
+      color: #1e3a52;
+      font-weight: 800;
+    }
+
+    /* Make hero CTA spacing a little tighter */
+    .hero { padding: 3.5rem 2rem 4rem; }
+    .hero-main p { margin-bottom: .75rem; }
+    .hero-main .emphasis { margin-bottom: 1.75rem; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .grid, .types-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-toggle { display: inline-flex; align-items: center; gap: .5rem; }
+      .nav-links { display: none; gap: 1rem; }
+      .nav-links.open { 
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: 4.25rem;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        z-index: 999;
+      }
+      nav { position: sticky; top: 0; z-index: 1000; }
+      .nav-content { position: relative; }
+    }
+  </style>
 </head>
+
 <body>
   <!-- Top Bar -->
   <div class="top-bar">
@@ -20,7 +153,7 @@
   </div>
 
   <!-- Hero -->
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="hero-content">
       <div class="logo-section">
         <div class="logo">FB</div>
@@ -32,8 +165,12 @@
 
       <div class="hero-main">
         <h2>Understanding Financial Betrayal Trauma</h2>
-        <p>FBRC documents patterns of trust-based financial exploitation and its psychological impact.</p>
-        <p class="emphasis">When trust becomes a weapon, survivors deserve clarity, validation, and pathways to healing.</p>
+        <p>
+          FBRC documents patterns of trust-based financial exploitation and its psychological impact.
+        </p>
+        <p class="emphasis">
+          When trust becomes a weapon, survivors deserve clarity, validation, and pathways to informed support.
+        </p>
 
         <div class="cta-buttons">
           <a href="research.html" class="btn btn-primary">Read the Research</a>
@@ -45,38 +182,12 @@
 
   <!-- Navigation -->
   <nav>
-    <!-- What is Financial Betrayal Trauma -->
-<section>
-  <div class="section-content">
-    <h2 class="section-title">What is Financial Betrayal Trauma?</h2>
-    <p class="section-subtitle">
-      Financial betrayal trauma refers to the psychological impact of trust-based financial exploitation—when harm is inflicted through relationship leverage (romantic, familial, professional, or community-based).
-      FBRC documents patterns, behavioral tactics, and language frameworks to support clarity and public understanding.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <span class="card-label">Definition</span>
-        <h3>Trust-Based Financial Exploitation</h3>
-        <p>Deception or coercion that uses trust, access, paperwork, or identity-linked leverage to extract value, transfer liability, or limit accountability.</p>
-      </div>
-
-      <div class="card">
-        <span class="card-label">Impact</span>
-        <h3>More Than a Financial Loss</h3>
-        <p>Often minimized as “just money,” the impact can include lasting trust disruption, fear, shame, and destabilization—especially when legal or reputational threats follow.</p>
-      </div>
-
-      <div class="card">
-        <span class="card-label">FBRC Focus</span>
-        <h3>Patterns, Categories, Documentation</h3>
-        <p>We publish research-style summaries and models drawn from public records, credible reporting, and survivor accounts.</p>
-      </div>
-    </div>
-  </div>
-</section>
     <div class="nav-content">
-      <ul class="nav-links">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+        ☰ Menu
+      </button>
+
+      <ul class="nav-links" id="navLinks">
         <li><a class="active" href="index.html">Home</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="categories.html">Categories</a></li>
@@ -84,14 +195,191 @@
         <li><a href="about.html">About FBRC</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+
       <a href="https://backbeamnetwork.com" class="btn-nav">Find Support</a>
     </div>
   </nav>
-    <!-- Categories Preview -->
-  <section class="section-gray">
+
+  <!-- What is Financial Betrayal Trauma? (Bring it early) -->
+  <section id="what-is">
     <div class="section-content">
+      <span class="section-kicker">FOUNDATIONAL DEFINITION</span>
+      <h2 class="section-title">What is Financial Betrayal Trauma?</h2>
+      <p class="section-subtitle">
+        Financial Betrayal Trauma describes what happens when financial harm is inflicted through a relationship of trust
+        (romantic, family, professional, or community-based). The money matters — but the defining feature is the
+        <strong>breach of trust</strong>, the <strong>manipulation</strong>, and the destabilization that often follows.
+      </p>
+
+      <div class="types-grid">
+        <div class="box">
+          <span class="card-label">Definition</span>
+          <h3 style="margin-top:.75rem;">Trust-Based Financial Exploitation</h3>
+          <p style="margin-top:.75rem;">
+            Deception, coercion, or “paperwork leverage” used to extract value, shift liability,
+            isolate decision-making, or limit accountability.
+          </p>
+        </div>
+
+        <div class="box">
+          <span class="card-label">Why it’s different</span>
+          <h3 style="margin-top:.75rem;">More Than a Financial Loss</h3>
+          <p style="margin-top:.75rem;">
+            The impact is often minimized as “just money,” yet survivors may experience prolonged trust disruption,
+            fear, shame, hypervigilance, and identity-level confusion — especially when legal retaliation or threats follow.
+          </p>
+        </div>
+
+        <div class="box">
+          <span class="card-label">FBRC focus</span>
+          <h3 style="margin-top:.75rem;">Patterns, Categories, Documentation</h3>
+          <p style="margin-top:.75rem;">
+            We publish research-style summaries and behavioral models drawn from public records,
+            credible reporting, and survivor accounts — to support clarity and public understanding.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Types (Prominent + fast recognition) -->
+  <section class="section-gray" id="types">
+    <div class="section-content">
+      <span class="section-kicker">RECOGNITION</span>
+      <h2 class="section-title">Common Types We Document</h2>
+      <p class="section-subtitle">
+        These categories help people quickly identify what occurred and navigate the site with precision.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="card-label">Romantic</span>
+          <h3>Romance Fraud & Trauma Bonds</h3>
+          <p>Trust is leveraged through intimacy, urgency, and dependency — often paired with financial requests and secrecy.</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Control</span>
+          <h3>Coercive Control & Financial Abuse</h3>
+          <p>Restriction, surveillance, threats, or paperwork pressure used to direct money, credit, or obligations.</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Family</span>
+          <h3>Family Financial Exploitation</h3>
+          <p>Financial extraction or harm within family systems: caretaking leverage, inheritance conflict, or hidden obligations.</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Community</span>
+          <h3>Affinity & Investment Betrayal</h3>
+          <p>Exploitation through shared identity, faith, culture, or professional networks — often framed as “opportunity.”</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Retaliation</span>
+          <h3>Legal Retaliation & Court-Related Trauma</h3>
+          <p>Threats, intimidation, or litigation tactics used to silence, isolate, or punish disclosure and boundary-setting.</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">General</span>
+          <h3>General Financial Betrayal Trauma</h3>
+          <p>Patterns that don’t fit a single category but share the same core: trust exploitation, destabilization, and confusion.</p>
+          <a href="categories.html">Explore category →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do (now AFTER they understand) -->
+  <section id="what-we-do">
+    <div class="section-content">
+      <span class="section-kicker">OUR ROLE</span>
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-subtitle">
+        FBRC provides the research foundation that supports clarity, language, and informed next steps.
+      </p>
+
+      <div class="what-we-do-grid">
+        <div class="what-item">
+          <div class="what-icon">📋</div>
+          <h3>Document Patterns</h3>
+          <p>We analyze public records and survivor accounts to identify repeatable behavioral patterns of financial exploitation.</p>
+        </div>
+
+        <div class="what-item">
+          <div class="what-icon">🔍</div>
+          <h3>Define Categories</h3>
+          <p>We publish clear category frameworks so people can recognize what happened and reduce confusion.</p>
+        </div>
+
+        <div class="what-item">
+          <div class="what-icon">🤝🏽</div>
+          <h3>Connect to Support</h3>
+          <p>For mental health support, survivors may visit BackBeam Network (specialized therapist directory).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote (keep it, but tighter) -->
+  <section class="section-gray" aria-label="Validation">
+    <div class="section-content">
+      <div class="quote">
+        <p><strong>“This is what happened to me.”</strong> Many survivors struggle to name the experience—especially when harm is minimized, denied, or reframed as “just money.”</p>
+        <p class="small">FBRC exists to provide language, patterns, and clear next steps—without shame.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Research (shorter, higher on page) -->
+  <section id="featured">
+    <div class="section-content">
+      <span class="section-kicker">START HERE</span>
+      <h2 class="section-title">Featured Research</h2>
+      <p class="section-subtitle">Plain-language summaries. No therapy claims. No clinical advice.</p>
+
+      <div class="grid">
+        <div class="card">
+          <span class="card-label">Framework</span>
+          <h3>What is Financial Betrayal Trauma?</h3>
+          <p>A working definition, core patterns, and why the impact is often minimized or misunderstood.</p>
+          <a href="research.html">Open →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Behavioral Model</span>
+          <h3>The Playbook: Romantic Trust & LLCs</h3>
+          <p>Step-by-step documentation of how perpetrators use relationships to create entities and shift liability.</p>
+          <a href="research.html">Open →</a>
+        </div>
+
+        <div class="card">
+          <span class="card-label">Pattern Documentation</span>
+          <h3>Scamming for Sport: Romance Fraud & LLC Exploitation</h3>
+          <p>How romantic trust is weaponized through manipulation cycles, paperwork leverage, and legal gray zones.</p>
+          <a href="research.html">Open →</a>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.25rem;">
+        <a href="research.html" style="color:#1e3a52; font-weight:800;">Browse all research →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Categories + Approach (still useful, but not buried) -->
+  <section class="section-gray" id="categories-preview">
+    <div class="section-content">
+      <span class="section-kicker">FRAMEWORK</span>
       <h2 class="section-title">Trauma Categories We Document</h2>
-      <p class="section-subtitle">This helps survivors immediately recognize: “That’s what happened to me.”</p>
+      <p class="section-subtitle">A structured way to recognize patterns and navigate research by type.</p>
 
       <div class="two-col">
         <div class="box">
@@ -105,88 +393,20 @@
             <li>General Financial Betrayal Trauma</li>
           </ul>
           <p style="margin-top:1.25rem;">
-            <a href="categories.html" style="color:#1e3a52; font-weight:700;">Learn more about each category →</a>
+            <a href="categories.html" style="color:#1e3a52; font-weight:800;">Learn more about each category →</a>
           </p>
         </div>
-        </section>
-  <!-- What We Do -->
-  <section>
-    <div class="section-content">
-      <h2 class="section-title">What We Do</h2>
-      <p class="section-subtitle">
-        FBRC provides the research foundation that helps survivors name their experience and connect to informed care.
-      </p>
-
-      <div class="what-we-do-grid">
-        <div class="what-item">
-          <div class="what-icon">📋</div>
-          <h3>Document Patterns</h3>
-          <p>We analyze public records and survivor accounts to identify repeatable behavioral patterns of financial exploitation.</p>
-        </div>
-        <div class="what-item">
-          <div class="what-icon">🔍</div>
-          <h3>Define Categories</h3>
-          <p>We create clear trauma categories so survivors can recognize what happened without shame or confusion.</p>
-        </div>
-        <div class="what-item">
-          <div class="what-icon">🫱🏻‍🫲🏽</div>
-          <h3>Connect to Support</h3>
-          <p><p>Those seeking specialist support may visit BackBeam Network (specialized directory).</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quote (Human element, still institutional) -->
-  <section class="section-gray">
-    <div class="section-content">
-      <div class="quote">
-        <p><strong>“This is what happened to me.”</strong> Many survivors struggle to name the experience—especially when the harm is minimized, denied, or reframed as “just money.”</p>
-        <p class="small">FBRC exists to provide language, patterns, and clear next steps—without shame.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Preview (Breadth-first) -->
-  <section>
-    <div class="section-content">
-      <h2 class="section-title">Featured Research</h2>
-      <p class="section-subtitle">A starting point. Plain-language summaries. No therapy claims. No clinical advice.</p>
-
-      <div class="grid">
-        <div class="card">
-          <span class="card-label">Framework</span>
-          <h3>What is Financial Betrayal Trauma?</h3>
-          <p>A working definition, core patterns, and why the impact is often minimized or misunderstood.</p>
-          <a href="research.html">View research →</a>
-        </div>
-
-        <div class="card">
-          <span class="card-label">Behavioral Model</span>
-          <h3>The Playbook: Romantic Trust & LLCs</h3>
-          <p>Step-by-step documentation of how perpetrators use relationships to create business entities and shift liability.</p>
-          <a href="research.html">Explore patterns →</a>
-        </div>
-
-        <div class="card">
-          <span class="card-label">Survivor Education</span>
-          <h3>Stabilization After Betrayal</h3>
-          <p>Practical, non-clinical steps: documentation, boundaries, support, and reducing re-contact risk.</p>
-          <a href="resources.html">Open resources →</a>
-        </div>
-      </div>
-
-      <p style="margin-top: 1.75rem;">
-        <a href="research.html" style="color:#1e3a52; font-weight:700;">Browse all research →</a>
-      </p>
-    </div>
-  </section>
 
         <div class="box">
           <h3>Our Approach</h3>
-          <p>FBRC research is derived from publicly available records (including court filings and civil litigation), credible reporting, and survivor accounts. We provide educational resources only.</p>
-          <p>We do not provide therapy, legal services, diagnosis, or clinical treatment.</p>
-          <p style="margin-top: 1.25rem;">
+          <p>
+            FBRC research is derived from publicly available records (including court filings and civil litigation),
+            credible reporting, and survivor accounts. We provide educational resources only.
+          </p>
+          <p>
+            We do not provide therapy, legal services, diagnosis, or clinical treatment.
+          </p>
+          <p style="margin-top: 1rem;">
             Survivors seeking mental health support may visit <strong>BackBeam Network</strong>, a specialized therapist directory for Financial Betrayal Trauma.
           </p>
         </div>
@@ -201,15 +421,40 @@
         <strong>DISCLAIMER:</strong>
         <p>The Financial Betrayal Research Center provides research and educational resources only. We do not provide therapy, diagnosis, legal services, or clinical treatment.</p>
         <p>If you are in crisis, please contact <strong>988</strong> (Suicide & Crisis Lifeline) or <strong>911</strong>.</p>
-        <p>For therapy services, visit <a href="https://backbeamnetwork.com" style="color:#1e3a52; font-weight:700;">BackBeam Network</a>.</p>
+        <p>For therapy services, visit <a href="https://backbeamnetwork.com" style="color:#1e3a52; font-weight:800;">BackBeam Network</a>.</p>
       </div>
 
       <div class="footer-info">
         <p><strong>Financial Betrayal Research Center</strong></p>
-        <p>Contact: <a href="mailto:research@financialbetrayal.org" style="color:#1e3a52; font-weight:700;">research@financialbetrayal.org</a></p>
+        <p>Contact: <a href="mailto:research@financialbetrayal.org" style="color:#1e3a52; font-weight:800;">research@financialbetrayal.org</a></p>
         <p style="margin-top:1rem;">© 2026 FBRC</p>
       </div>
     </div>
   </footer>
+
+  <!-- Mobile nav toggle -->
+  <script>
+    (function () {
+      const btn = document.getElementById("navToggle");
+      const links = document.getElementById("navLinks");
+      if (!btn || !links) return;
+
+      btn.addEventListener("click", function () {
+        const open = links.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      // close menu on link click (mobile)
+      links.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          if (links.classList.contains("open")) {
+            links.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
+
